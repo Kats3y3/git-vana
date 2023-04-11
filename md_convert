@@ -1,0 +1,15 @@
+import os
+import subprocess
+
+# Set the input and output directories
+input_dir = "input_files"
+output_dir = "output_files"
+
+# Get a list of all the Markdown files in the input directory
+markdown_files = [f for f in os.listdir(input_dir) if f.endswith(".md")]
+
+# Iterate over each file and use pandoc to convert it to a Word document
+for markdown_file in markdown_files:
+    input_path = os.path.join(input_dir, markdown_file)
+    output_path = os.path.join(output_dir, os.path.splitext(markdown_file)[0] + ".docx")
+    subprocess.call(["pandoc", "-o", output_path, input_path])
